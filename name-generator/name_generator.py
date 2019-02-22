@@ -1,50 +1,30 @@
-import sys, random
+"""importing in pseudonums.py to see how the __name__ and __main__ variables work."""
+from pseudonyms import main
 
-print("Welcome to the Psych 'Sidekick Name Picker.'\n" )
-print("A name just like Sean would pick for Gus:\n\n")
+"""By using __name__ and __main__ setup here is what is going on:
 
-first = ('Baby Oil', 'Bad News', 'Big Burps', "Bill 'Beenie-Weenie'",
-         "Bob 'Stinkbug'", 'Bowel Noises', 'Boxelder', "Bud 'Lite' ",
-         'Butterbean', 'Buttermilk', 'Buttocks', 'Chad', 'Chesterfield',
-         'Chewy', 'Chigger', 'Cinnabuns', 'Cleet', 'Cornbread', 'Crab Meat',
-         'Crapps', 'Dark Skies', 'Dennis Clawhammer', 'Dicman', 'Elphonso',
-         'Fancypants', 'Figgs', 'Foncy', 'Gootsy', 'Greasy Jim', 'Huckleberry',
-         'Huggy', 'Ignatious', 'Jimbo', "Joe 'Pottin Soil'", 'Johnny',
-         'Lemongrass', 'Lil Debil', 'Longbranch', '"Lunch Money"', 'Mergatroid',
-         '"Mr Peabody"', 'Oil-Can', 'Oinks', 'Old Scratch', 'Ovaltine',
-         'Pennywhistle', 'Pitchfork Ben', 'Potato Bug', 'Pushmeet',
-         'Rock Candy', 'Schlomo', 'Scratchensniff', 'Scut',
-         "Sid 'The Squirts'", 'Skidmark', 'Slaps', 'Snakes', 'Snoobs',
-         'Snorki', 'Soupcan Sam', 'Spitzitout', 'Squids', 'Stinky',
-         'Storyboard', 'Sweet Tea', 'TeeTee', 'Wheezy Joe',
-         "Winston 'Jazz Hands'", 'Worms')
+__name__: 
+Is a built-in variable that allows python to know whether a program
+is being run by itself, or as an imported module.
 
-last = ('Appleyard', 'Bigmeat', 'Bloominshine', 'Boogerbottom',
-        'Breedslovetrout', 'Butterbaugh', 'Clovenhoof', 'Clutterbuck',
-        'Cocktoasten', 'Endicott', 'Fewhairs', 'Gooberdapple', 'Goodensmith',
-        'Goodpasture', 'Guster', 'Henderson', 'Hooperbag', 'Hoosenater',
-        'Hootkins', 'Jefferson', 'Jenkins', 'Jingley-Schmidt', 'Johnson',
-        'Kingfish', 'Listenbee', "M'Bembo", 'McFadden', 'Moonshine', 'Nettles',
-        'Noseworthy', 'Olivetti', 'Outerbridge', 'Overpeck', 'Overturf',
-        'Oxhandler', 'Pealike', 'Pennywhistle', 'Peterson', 'Pieplow',
-        'Pinkerton', 'Porkins', 'Putney', 'Quakenbush', 'Rainwater',
-        'Rosenthal', 'Rubbins', 'Sackrider', 'Snuggleshine', 'Splern',
-        'Stevens', 'Stroganoff', 'Sugar-Gold', 'Swackhamer', 'Tippins',
-        'Turnipseed', 'Vinaigrette', 'Walkingstick', 'Wallbanger', 'Weewax',
-        'Weiners', 'Whipkey', 'Wigglesworth', 'Wimplesnatch', 'Winterkorn',
-        'Woolysocks')
+"__main__":
+Is a hard-coded string that is set by python as a program gets run.
 
-while True:
-	firstName = random.choice(first)
+Process:
+When you run pseudonyms.py by itself, before executing any code python
+will set __name__ = "__main__"
 
-	lastName = random.choice(last)
+this means that 
+if __name__ == "__main__":
+    main()
+will evaluate to TRUE and the body will get executed
 
-	print("\n\n")
-	print("{} {}".format(firstName, lastName), file=sys.stderr)
-	print("\n\n")
+When you import pseudonyms.py as module python will set __name__ = "main"
 
-	try_again = input("\n\nTry again? (Press Enter else n to quit)\n")
-	if try_again.lower() == "n":
-		break
+this means that if __name__ == "__main__" will evaluate to FALSE and   
+nothing will happen in name_generator until you call main() 
 
-input("\nPress Enter to exit.")
+This type of setup is really only useful when its one module that you are
+importing. This looks like a nice setup to have if your're unit testing.
+"""
+main()
